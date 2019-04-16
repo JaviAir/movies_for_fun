@@ -1,0 +1,24 @@
+
+Infinite Scroll
+  Lazy Loading. Done.
+    Make it work with scrolling. ~Almost there
+
+Navigation/save state
+  Make back button take you to the position of the page you were in last time. Done.
+    (Exactly where the user left off) Done.
+  For Mobile include manual back button
+    Add feature to slide out of movie details page.
+      Ex. Sliding to the right from the movie-details page takes you back to previous state in /movies
+
+
+Forms
+  Finish forms seciton in Angular course
+    Make Add-new-movie component form to create movies into the database with POST requests
+      Make the movie-details page a readable and editable form hanlding edits with PUT requests and deletes with DELETE requests
+
+
+Filter/Sorting/Query
+  filter get requests by querying the database for genres
+  same but with alphabetical
+    Ex. query/find all movies whose title start with "T"
+

@@ -1,0 +1,100 @@
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div style="text-align:center">
+    <h1>
+      Welcome to {{ title }}!
+    </h1>
+  </div>
+    </div>
+  </div>
+</div>
+
+<p>
+  home works!
+</p>
+<div class="container"> <!--ALL ROWS MUST BE INSIDE CONTAINER-->
+  <div class="row">
+
+    <div class="col text-center">
+      <div ngbDropdown class="d-inline-block">
+        <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Genre dropdown</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button ngbDropdownItem>Action - 1</button>
+          <button ngbDropdownItem>Another Action</button>
+          <button ngbDropdownItem>Something else is here</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col text-center">
+        <div ngbDropdown class="d-inline-block">
+          <button class="btn btn-outline-primary" id="dropdownBasic2" ngbDropdownToggle>Alphabetical</button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
+            <div class="container">
+              <div class="row">
+                <div class="col-3">
+                    <button >A</button>
+                  </div>
+                  <div class="col-3">
+                    <button >B</button>
+                  </div>
+                  <div class="col-2">
+                      <button >C</button>
+                  </div>
+                  <div class="col-2">
+                      <button >D</button>
+                    </div>
+              </div>
+            <button ngbDropdownItem>E</button>
+            <button ngbDropdownItem>F</button>
+            <button ngbDropdownItem>H</button>
+            <button ngbDropdownItem>I</button>
+            <button ngbDropdownItem>J</button>
+            <button ngbDropdownItem>K</button>
+            <button ngbDropdownItem>L</button>
+            <button ngbDropdownItem>M</button>
+            <button ngbDropdownItem>N</button>
+            <button ngbDropdownItem>O</button>
+            <button ngbDropdownItem>P</button>
+            <button ngbDropdownItem>Q</button>
+            <button ngbDropdownItem>R</button>
+            <button ngbDropdownItem>S</button>
+            <button ngbDropdownItem>T</button>
+            <button ngbDropdownItem>U</button>
+            <button ngbDropdownItem>V</button>
+            <button ngbDropdownItem>W</button>
+            <button ngbDropdownItem>X</button>
+            <button ngbDropdownItem>Y</button>
+            <button ngbDropdownItem>Z</button>
+          </div>
+        </div>
+      </div>
+
+  </div>
+</div>
+<br>
+    <div class="text-center">
+        <p> "<" Prev 1 2 3 ... 10 Next > </p>
+    </div>
+<hr>
+<!-- <app-movie-item *ngFor="let movieItem of movieArray" [movie]="movieItem"></app-movie-item> -->
+
+
+    <app-movie-list></app-movie-list>
+    <!-- <app-movie-item></app-movie-item> -->
+    <!-- <router-outlet></router-outlet> -->
+
+<br>
+
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+      <p> "<" Prev 1 2 3 ... 10 Next > </p>
+    </div>
+  </div>
+</div>
+
