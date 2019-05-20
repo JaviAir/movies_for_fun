@@ -6,12 +6,23 @@ const Schema = mongoose.Schema;
 const MovieSchema = new Schema({
     title: {
         type: String,
-        required: [true,'Name field is required']
+        required: [true,'YO title field is required']
     },
     description: {
         type: String
+    },
+    image: {
+        type: String
+    },
+    genre: {
+        type: String
+    },
+    rating: {
+        type: Number
     }
 });
+
+
 
 const Movie = mongoose.model('movie', MovieSchema);
 
