@@ -1,24 +1,54 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Movie } from '../models/movie.model';
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
+  // CRUD
 
-  getMovies(n) {
-     return this.http.post<Movie[]>('http://localhost:4000/pagemovies', { 'n' : n });
-  }
-
-  addMovie() {
-      return this.http.post('http://localhost:4000/movies', {
-      'title': 'title angular',
-      'description': 'description angular.'
+  getMovies(n: Number) {
+    return this.http.post<Movie[]>('http://localhost:4000/pagemovies', {
+      n: n
     });
   }
 
+  addMovie(movie: Movie) {
+    return this.http.post('http://localhost:4000/movies', movie);
+  }
+
+  updateMovie(oldTitle: String, movie: Movie) {
+    return this.http.put('http://localhost:4000/movies/' + oldTitle, movie);
+  }
+
+  deleteMovie(oldTitle: String) {
+    return this.http.delete('http://localhost:4000/movies/' + oldTitle);
+  }
+
+  // FILTERS
+
+  getAlphabetizedOrder(char: String, skipNumber: Number) {
+    return this.http.post('http://localhost:4000/movies/filterchar', {
+      char: char,
+      n: skipNumber
+    });
+  }
+
+  filterGenre(genre: String, skipNumber: Number) {
+    return this.http.post('http://localhost:4000/movies/filtergenre', {
+      genre: genre,
+      n: skipNumber
+    });
+  }
+
+  filterBoth(char: String, genre: String, skipNumber: Number) {
+    return this.http.post('http://localhost:4000/movies/filterboth', {
+      char: char,
+      genre: genre,
+      n: skipNumber
+    });
+  }
 }
