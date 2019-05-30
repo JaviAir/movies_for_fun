@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MoviesService } from './services/movies.service';
+import { HttpService } from './services/http.service';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     console.log('app component initialized');
     this.movieService.pageNumber = 1;
-    this.movieService.populateMovies(1);
+    this.movieService.populateMovies(false);
   }
 
 
