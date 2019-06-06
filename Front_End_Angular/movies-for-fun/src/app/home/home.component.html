@@ -21,11 +21,9 @@
 
     <div class="col text-center">
       <div ngbDropdown class="d-inline-block">
-        <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Genre dropdown</button>
+        <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Genre: {{selectedGenreName}}</button>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-          <button ngbDropdownItem>Action - 1</button>
-          <button ngbDropdownItem>Another Action</button>
-          <button ngbDropdownItem>Something else is here</button>
+          <button ngbDropdownItem *ngFor="let item of genre; let i = index" type="button" [disabled]="selectedGenreIndex === i" (click)="onGenreSelected(i)">{{item}}</button>
         </div>
       </div>
     </div>
@@ -36,40 +34,12 @@
           <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
             <div class="container">
               <div class="row">
-                <div class="col-3">
-                    <button >A</button>
+                <div class="col-0" *ngFor="let item of alphabet; let i = index" type="button">
+                    <button  type="button" [disabled]="selectedCharIndex === i" (click)="onLetterSelected(i)">{{item}}</button>
                   </div>
-                  <div class="col-3">
-                    <button >B</button>
-                  </div>
-                  <div class="col-2">
-                      <button >C</button>
-                  </div>
-                  <div class="col-2">
-                      <button >D</button>
-                    </div>
               </div>
-            <button ngbDropdownItem>E</button>
-            <button ngbDropdownItem>F</button>
-            <button ngbDropdownItem>H</button>
-            <button ngbDropdownItem>I</button>
-            <button ngbDropdownItem>J</button>
-            <button ngbDropdownItem>K</button>
-            <button ngbDropdownItem>L</button>
-            <button ngbDropdownItem>M</button>
-            <button ngbDropdownItem>N</button>
-            <button ngbDropdownItem>O</button>
-            <button ngbDropdownItem>P</button>
-            <button ngbDropdownItem>Q</button>
-            <button ngbDropdownItem>R</button>
-            <button ngbDropdownItem>S</button>
-            <button ngbDropdownItem>T</button>
-            <button ngbDropdownItem>U</button>
-            <button ngbDropdownItem>V</button>
-            <button ngbDropdownItem>W</button>
-            <button ngbDropdownItem>X</button>
-            <button ngbDropdownItem>Y</button>
-            <button ngbDropdownItem>Z</button>
+              <!-- <button ngbDropdownItem *ngFor="let item of alphabet; let i = index" type="button" (click)="onLetterSelected(i)">{{item}}</button> -->
+              <!-- The code above looks better and could work if virtual scrolling could work or the dropdown wouldnt disappear on touch -->
           </div>
         </div>
       </div>
@@ -77,19 +47,24 @@
   </div>
 </div>
 <br>
-    <div class="text-center">
-        <p> "<" Prev 1 2 3 ... 10 Next > </p>
-    </div>
-<hr>
-<!-- <app-movie-item *ngFor="let movieItem of movieArray" [movie]="movieItem"></app-movie-item> -->
 
+<hr>
 
     <app-movie-list></app-movie-list>
-    <!-- <app-movie-item></app-movie-item> -->
-    <!-- <router-outlet></router-outlet> -->
 
 <br>
+<hr>
 
+<!-- // load next page button here -->
+<div class="row">
+    <div class="col text-center">
+      <br />
+      <button class="btn btn-primary" (click)="nextArray()">
+        Load Next Page
+      </button>
+    </div>
+  </div>
+<br>
 <div class="container">
   <div class="row">
     <div class="col text-center">
