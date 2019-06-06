@@ -9,17 +9,13 @@
 </div>
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-
-          <app-movie-item *ngFor="let movieItem of movieArray" [movie]="movieItem"></app-movie-item>
-        </div>
-    </div>
-    <div class="row">
-      <div class="col text-center">
-        <br>
-        <button class="btn btn-primary" (click)="nextArray()">Load Next Page </button>
-      </div>
+  <div class="row">
+    <div class="col-md-12">
+      <app-movie-item
+        *ngFor="let movieItem of movieArray; let i = index"
+        [index]="i"
+        [movie]="movieItem"
+      ></app-movie-item>
     </div>
   </div>
-
+</div>
