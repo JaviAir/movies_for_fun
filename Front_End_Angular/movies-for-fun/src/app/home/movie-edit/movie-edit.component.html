@@ -1,0 +1,123 @@
+<p>
+  movie-edit works!
+</p>
+
+<ng-template #content let-modal>
+  <!-- <div class="modal-header">
+    <h4 class="modal-title">Modal title</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div> -->
+  <div class="modal-body">
+    <img src="http://www.clker.com/cliparts/h/9/v/L/X/q/bright-green-check-mark-hi.png" alt="success_mark" class="img-responsive"
+    style="max-height: 250px; max-width: 250px;   display: block;
+    margin-left: auto;
+    margin-right: auto;"/>
+    <br>
+    <p class="text-center">Movie saved successfully!</p>
+  </div>
+  <div class="modal-header">
+  <div class=container>
+  <div class="row">
+    <!-- <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button> -->
+  <div class="col text-center">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')" (click)="onCancel()">Close</button>
+    <br>
+</div>
+
+  </div>
+  </div>
+  </div>
+</ng-template>
+
+<div class="row">
+  <div class="col">
+    <form [formGroup]="movieForm" (ngSubmit)="onSubmit(content)">
+      <div class="row">
+        <div class="col text-center">
+            <span
+            *ngIf="!movieForm.valid && movieForm.touched"
+            class="help-block">Please enter valid data!</span>
+          <button type="submit" class="btn btn-success col">Save</button>
+        </div>
+        <div class="col text-center">
+          <button class="btn btn-outline-danger col" type="button" (click)="onCancel()">
+            Cancel
+          </button>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" id="title" formControlName="title" class="form-control" />
+            <span
+            *ngIf="!movieForm.get('title').valid && movieForm.get('title').touched"
+            class="help-block">Please enter a valid title!</span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea
+              type="text"
+              id="description"
+              formControlName="description"
+              class="form-control"
+            ></textarea>
+            <span
+            *ngIf="!movieForm.get('description').valid && movieForm.get('description').touched"
+            class="help-block">Please enter a valid description!</span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="image">Image URL</label>
+            <input type="text" id="image" class="form-control" formControlName="image" #imagePath/>
+            <span
+            *ngIf="!movieForm.get('image').valid && movieForm.get('image').touched"
+            class="help-block">Please enter a valid image path!</span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <img [src]="imagePath.value" class="img-responsive" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="genre">Genre</label>
+        <select id="genre" class="form-control" name="genre" formControlName="genre">
+            <option value="Action">Action</option>
+            <option value="Comedy">Comedy</option>
+            <option value="Horror">Horror</option>
+            <option value="Romance">Romance</option>
+            <option value="Sci-fi">Sci-Fi</option>
+        </select>
+        <span
+        *ngIf="!movieForm.get('genre').valid && movieForm.get('genre').touched"
+        class="help-block">Please enter a valid genre!</span>
+      </div>
+      <div class="form-group">
+        <label for="rating">Rating</label>
+        <input
+        type="number"
+        id="rating"
+        class="form-control col-8"
+        formControlName="rating"
+        name="rating"
+        min="1"
+        max="5" />
+        <span
+        *ngIf="!movieForm.get('rating').valid && movieForm.get('rating').touched"
+        class="help-block">Please enter a valid rating!</span>
+      </div>
+    </form>
+  </div>
+</div>
