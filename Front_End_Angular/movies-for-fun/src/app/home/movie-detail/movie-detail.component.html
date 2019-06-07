@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h3>{{movie.title}}</h3>
+      <h3 *ngIf="title">{{movie.title}}</h3>
     </div>
     <div class="col text-right">
       <button class="btn btn-outline-primary" type="button" (click)="onEdit()" routerLink="edit" [queryParams]="{edit: true}" >Edit</button>
@@ -14,7 +14,7 @@
   <br>
   <div class="row">
     <div class="col">
-        <img src="{{movie.image}}" alt="image_here" class="center"/>
+        <img src="{{movie.image}}" alt="image_here" class="center" *ngIf="movie" />
     </div>
   </div>
   <br>
@@ -25,7 +25,7 @@
   </div>
   <div class="row">
     <div class="col">
-      <p>
+      <p *ngIf="movie">
          {{movie.description}}
     </p>
     </div>
@@ -36,7 +36,7 @@
       <h4>Genre</h4>
     </div>
     <div class="col">
-        <p>{{movie.genre}}</p>
+        <p *ngIf="movie">{{movie.genre}}</p>
   </div>
   </div>
   <br>
@@ -46,7 +46,7 @@
     </div>
     <div class="col">
       <!-- <p>*****</p> -->
-      <p>{{movie.rating}}</p>
+      <p *ngIf="movie">{{movie.rating}}</p>
     </div>
   </div>
 </div>
