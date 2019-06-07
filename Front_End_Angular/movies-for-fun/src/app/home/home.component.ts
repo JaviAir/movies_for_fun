@@ -1,6 +1,5 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MoviesService } from '../services/movies.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -16,12 +15,38 @@ export class HomeComponent implements OnInit {
   selectedGenreName: String = 'All';
   selectedCharName: String = 'All';
 
-  genre: String[] = ['All', 'Action', 'Comedy', 'Horror', 'Romance', 'Sci-Fi']; // user should SELECT genre form dropdown menu int he FORMS section.
+  genre: String[] = ['All', 'Action', 'Comedy', 'Horror', 'Romance', 'Sci-Fi'];
+  // user should SELECT genre form dropdown menu int he FORMS section.
 
-  alphabet: String[] =
-    ['All', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
-    'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',
-    'U', 'V', 'W', 'X', 'Y', 'Z'];
+  alphabet: String[] = [
+    'All',
+    'A',
+    'B',
+    'C',
+    'D',
+    'E',
+    'F',
+    'G',
+    'H',
+    'I',
+    'J',
+    'K',
+    'L',
+    'M',
+    'N',
+    'O',
+    'P',
+    'Q',
+    'R',
+    'S',
+    'T',
+    'U',
+    'V',
+    'W',
+    'X',
+    'Y',
+    'Z'
+  ];
 
   constructor(private movieService: MoviesService) {}
 
@@ -35,13 +60,17 @@ export class HomeComponent implements OnInit {
     this.selectedCharName = this.alphabet[charIndex];
     this.selectedCharIndex = charIndex;
 
-    if (this.selectedGenreIndex === 0 && this.selectedCharIndex === 0) { // if no filters active
+    if (this.selectedGenreIndex === 0 && this.selectedCharIndex === 0) {
+      // if no filters active
       this.movieService.populateMovies(false);
-    } else if (this.selectedGenreIndex !== 0 && this.selectedCharIndex === 0) { // if only genre filter is active
+    } else if (this.selectedGenreIndex !== 0 && this.selectedCharIndex === 0) {
+      // if only genre filter is active
       this.movieService.filterGenre(this.selectedGenreName, false);
-    } else if (this.selectedGenreIndex === 0 && this.selectedCharIndex !== 0) { // if only alphabetical filter is active
+    } else if (this.selectedGenreIndex === 0 && this.selectedCharIndex !== 0) {
+      // if only alphabetical filter is active
       this.movieService.filterAlphabetically(this.selectedCharName, false);
-    } else if (this.selectedGenreIndex !== 0 && this.selectedCharIndex !== 0) { // if both filters are active
+    } else if (this.selectedGenreIndex !== 0 && this.selectedCharIndex !== 0) {
+      // if both filters are active
       this.movieService.filterGenreAndAlphabetical(
         this.selectedCharName,
         this.selectedGenreName,
@@ -54,13 +83,17 @@ export class HomeComponent implements OnInit {
     this.selectedGenreName = this.genre[genreindex]; // save the selected genre
     this.selectedGenreIndex = genreindex; // save the selected genre name
 
-    if (this.selectedGenreIndex === 0 && this.selectedCharIndex === 0) { // if no filters active
+    if (this.selectedGenreIndex === 0 && this.selectedCharIndex === 0) {
+      // if no filters active
       this.movieService.populateMovies(false);
-    } else if (this.selectedGenreIndex !== 0 && this.selectedCharIndex === 0) { // if only genre filter is active
+    } else if (this.selectedGenreIndex !== 0 && this.selectedCharIndex === 0) {
+      // if only genre filter is active
       this.movieService.filterGenre(this.selectedGenreName, false);
-    } else if (this.selectedGenreIndex === 0 && this.selectedCharIndex !== 0) { // if only alphabetical filter is active
+    } else if (this.selectedGenreIndex === 0 && this.selectedCharIndex !== 0) {
+      // if only alphabetical filter is active
       this.movieService.filterAlphabetically(this.selectedCharName, false);
-    } else if (this.selectedGenreIndex !== 0 && this.selectedCharIndex !== 0) { // if both filters are active
+    } else if (this.selectedGenreIndex !== 0 && this.selectedCharIndex !== 0) {
+      // if both filters are active
       this.movieService.filterGenreAndAlphabetical(
         this.selectedCharName,
         this.selectedGenreName,
@@ -71,13 +104,17 @@ export class HomeComponent implements OnInit {
 
   nextArray() {
     console.log('loadnextarrayformhome!');
-    if (this.selectedGenreIndex === 0 && this.selectedCharIndex === 0) { // if no filters active
+    if (this.selectedGenreIndex === 0 && this.selectedCharIndex === 0) {
+      // if no filters active
       this.movieService.populateMovies(true);
-    } else if (this.selectedGenreIndex !== 0 && this.selectedCharIndex === 0) { // if only genre filter is active
+    } else if (this.selectedGenreIndex !== 0 && this.selectedCharIndex === 0) {
+      // if only genre filter is active
       this.movieService.filterGenre(this.selectedGenreName, true);
-    } else if (this.selectedGenreIndex === 0 && this.selectedCharIndex !== 0) { // if only alphabetical filter is active
+    } else if (this.selectedGenreIndex === 0 && this.selectedCharIndex !== 0) {
+      // if only alphabetical filter is active
       this.movieService.filterAlphabetically(this.selectedCharName, true);
-    } else if (this.selectedGenreIndex !== 0 && this.selectedCharIndex !== 0) { // if both filters are active
+    } else if (this.selectedGenreIndex !== 0 && this.selectedCharIndex !== 0) {
+      // if both filters are active
       this.movieService.filterGenreAndAlphabetical(
         this.selectedCharName,
         this.selectedGenreName,
