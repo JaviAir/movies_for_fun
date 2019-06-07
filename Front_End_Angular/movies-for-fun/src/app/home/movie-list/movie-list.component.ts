@@ -37,7 +37,9 @@ export class MovieListComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnDestroy() {
-    this.movieArraySubscription.unsubscribe();
+    if (this.movieArray) {
+      this.movieArraySubscription.unsubscribe();
+    }
   }
 
 
