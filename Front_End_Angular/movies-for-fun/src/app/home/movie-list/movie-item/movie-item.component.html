@@ -38,23 +38,24 @@
             alt="movie_img"
             class="img-responsive"
             style="max-height: 250px; max-width: 250px;"
+            *ngIf="movie"
           />
         </span>
       </div>
 
       <div class="col">
-        <h4 class="list-group-item-heading m-title">{{ movie.title }}</h4>
-        <p class="list-group-item-text">{{ movie.description }}</p>
+        <h4 class="list-group-item-heading m-title" *ngIf="movie">{{ movie.title }}</h4>
+        <p class="list-group-item-text" *ngIf="movie">{{ movie.description }}</p>
         <div class="row">
           <div class="col">
-            <p class="-list-group-item-text">Genre: {{movie.genre}} </p>
+            <p class="-list-group-item-text" *ngIf="movie">Genre: {{movie.genre}} </p>
           </div>
           <div class="col">
-            <span class="read-more">Read More </span>
+            <span class="read-more" *ngIf="movie">Read More </span>
 
           </div>
         </div>
-        <span>Rating: {{movie.rating}} *****</span>
+        <span *ngIf="movie">Rating: {{movie.rating}} Stars </span>
       </div>
     </div>
   </div>
