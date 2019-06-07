@@ -39,7 +39,7 @@
             <span
             *ngIf="!movieForm.valid && movieForm.touched"
             class="help-block">Please enter valid data!</span>
-          <button type="submit" class="btn btn-success col">Save</button>
+          <button [disabled]="!movieForm.valid" type="submit" class="btn btn-success col">Save</button>
         </div>
         <div class="col text-center">
           <button class="btn btn-outline-danger col" type="button" (click)="onCancel()">
