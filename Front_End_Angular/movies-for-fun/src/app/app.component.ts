@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MoviesService } from './services/movies.service';
-import { HttpService } from './services/http.service';
 
 @Component({
   selector: 'app-root',
