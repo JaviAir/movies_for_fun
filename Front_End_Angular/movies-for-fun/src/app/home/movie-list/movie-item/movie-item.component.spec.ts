@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MovieItemComponent } from './movie-item.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('MovieItemComponent', () => {
   let component: MovieItemComponent;
@@ -8,6 +10,9 @@ describe('MovieItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule, HttpClientTestingModule
+      ],
       declarations: [ MovieItemComponent ]
     })
     .compileComponents();
