@@ -54,5 +54,15 @@ movie-details page isnt dynamic/ doesnt show changes. Fixed/done.
 
 authenticity or Dealing with duplicates
 everytime user treturns to home page, the filter and sort values return to default.
+Add modal before navigating back to /movies page after addMovie. (To give time for database to refresh.)
 
+front page
+Add alphabetical current letter like genre has.
+clean up design, delete extra p tags. turn the bottom ones into white, bigger, with black background. (Maybe add functionality to them)
 
+make title in movieDetail page css: capitalCase.
+
+delete movie eidt oworks p tag
+find/use/implement api for foul language detection.
+
+switching alphabetical to G then back to A delets from memory. Most likely skippping since its too low array of data/collections
