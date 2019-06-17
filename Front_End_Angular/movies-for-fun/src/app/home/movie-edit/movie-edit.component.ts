@@ -61,7 +61,7 @@ export class MovieEditComponent implements OnInit {
     let movieDescription: String = '';
     let movieImagePath: String = '';
     let movieGenre: String = '';
-    let movieRating: Number = 1;
+    let movieRating: String = '';
 
     if (this.editMode) {
       const movie = this.movieService.getMovie(this.title);
