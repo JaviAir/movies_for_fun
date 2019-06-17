@@ -5,6 +5,6 @@ export class Movie {
     public description: String,
     public image: String,
     public genre: String,
-    public rating: Number
+    public rating: String
   ) {}
 }
