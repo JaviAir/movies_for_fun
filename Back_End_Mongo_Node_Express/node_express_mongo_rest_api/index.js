@@ -9,11 +9,15 @@ const app = express();
 app.use(bodyParser.json());
 
 // connect to mongodb
-mongoose.connect('mongodb://localhost/movieDatabase');
+mongoose.connect('mongodb://localhost/movieDatabase', { useNewUrlParser: true });
 mongoose.Promise = global.Promise;
 
 mongoose.connection.once('open', () => {
-    console.log('Connection has been made to MongoDB');
+    console.log('Connection has been made to MongoDB.');
+    // listen for requests
+    app.listen(process.env.port || 4000, () => {
+        console.log('Now listening for requests.');
+    });
 }).on('error', (error) => {
     console.log('Conneciton error: ' + error);
 });
@@ -26,7 +30,3 @@ app.use(cors({
 // initialize routes
 app.use(require('./routes/api'));
 
-// listen for requests
-app.listen(process.env.port || 4000, () => {
-    console.log('now listening for requests');
-});
