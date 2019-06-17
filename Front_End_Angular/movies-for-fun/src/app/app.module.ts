@@ -12,7 +12,6 @@ import { MovieListComponent } from './home/movie-list/movie-list.component';
 import { MovieItemComponent } from './home/movie-list/movie-item/movie-item.component';
 import { MoviesService } from './services/movies.service';
 import { MovieDetailComponent } from './home/movie-detail/movie-detail.component';
-// import { AddMovieComponent } from './add-movie/add-movie.component';
 import { MovieEditComponent } from './home/movie-edit/movie-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
