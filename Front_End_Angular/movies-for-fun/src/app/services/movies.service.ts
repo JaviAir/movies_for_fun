@@ -15,6 +15,14 @@ export class MoviesService {
 
   movieParam;
 
+  // for home component filter and sort
+  selectedGenreIndex = 0;
+  selectedCharIndex = 0;
+
+  selectedGenreName: String = 'All';
+  selectedCharName: String = 'All';
+  // end for home component
+
   generalFirstTime: Boolean = true;
 
   filterAlphabeticalFirstTime: Boolean = true;
