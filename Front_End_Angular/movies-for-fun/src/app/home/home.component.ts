@@ -9,11 +9,11 @@ import { MoviesService } from '../services/movies.service';
 export class HomeComponent implements OnInit {
   title = 'movies-for-fun';
 
-  selectedGenreIndex = 0;
-  selectedCharIndex = 0;
+  selectedGenreIndex = this.movieService.selectedGenreIndex;
+  selectedCharIndex = this.movieService.selectedCharIndex;
 
-  selectedGenreName: String = 'All';
-  selectedCharName: String = 'All';
+  selectedGenreName = this.movieService.selectedGenreName;
+  selectedCharName = this.movieService.selectedCharName;
 
   genre: String[] = ['All', 'Action', 'Comedy', 'Horror', 'Romance', 'Sci-Fi'];
   // user should SELECT genre form dropdown menu int he FORMS section.
@@ -50,15 +50,18 @@ export class HomeComponent implements OnInit {
 
   constructor(private movieService: MoviesService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    // this.retrieveStoredValues();
+  }
   // @HostListener('window:scroll', ['$event']) // for window scroll events
   // onScroll(event) {
   //   console.log('Scrolling: ' + window.pageYOffset);
   // }
 
   onLetterSelected(charIndex: number) {
-    this.selectedCharName = this.alphabet[charIndex];
-    this.selectedCharIndex = charIndex;
+    this.movieService.selectedCharName = this.alphabet[charIndex];
+    this.movieService.selectedCharIndex = charIndex;
+    this.retrieveStoredValues();
 
     if (this.selectedGenreIndex === 0 && this.selectedCharIndex === 0) {
       // if no filters active
@@ -80,8 +83,9 @@ export class HomeComponent implements OnInit {
   }
 
   onGenreSelected(genreindex: number) {
-    this.selectedGenreName = this.genre[genreindex]; // save the selected genre
-    this.selectedGenreIndex = genreindex; // save the selected genre name
+    this.movieService.selectedGenreName = this.genre[genreindex]; // save the selected genre
+    this.movieService.selectedGenreIndex = genreindex; // save the selected genre name
+    this.retrieveStoredValues();
 
     if (this.selectedGenreIndex === 0 && this.selectedCharIndex === 0) {
       // if no filters active
@@ -104,6 +108,7 @@ export class HomeComponent implements OnInit {
 
   nextArray() {
     console.log('loadnextarrayformhome!');
+    this.retrieveStoredValues();
     if (this.selectedGenreIndex === 0 && this.selectedCharIndex === 0) {
       // if no filters active
       this.movieService.populateMovies(true);
@@ -122,4 +127,13 @@ export class HomeComponent implements OnInit {
       );
     }
   }
+
+  retrieveStoredValues() {
+    this.selectedGenreIndex = this.movieService.selectedGenreIndex;
+    this.selectedCharIndex = this.movieService.selectedCharIndex;
+
+    this.selectedGenreName = this.movieService.selectedGenreName;
+    this.selectedCharName = this.movieService.selectedCharName;
+  }
+
 }
