@@ -9,7 +9,8 @@ const routes: Routes = [
   { path: 'movies', component: HomeComponent},
   { path: 'movies/:title', component: MovieDetailComponent},
   { path: 'movies/:title/edit', component: MovieEditComponent},
-  { path: 'addMovie', component: MovieEditComponent}
+  { path: 'addMovie', component: MovieEditComponent},
+  { path: '**', redirectTo: '/movies'}
 ];
 
 @NgModule({
