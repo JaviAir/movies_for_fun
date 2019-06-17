@@ -9,19 +9,22 @@ export class HttpService {
   constructor(private http: HttpClient) {}
 
   // CRUD
+  // local = 'http://localhost:4000/';
+  // firebase was firebaseprofile/app
+  herokuUrl = 'https://stark-brook-68539.herokuapp.com/';
 
   getMovies(n: Number) {
-    return this.http.post<Movie[]>('http://localhost:4000/pagemovies', {
+    return this.http.post<Movie[]>( this.herokuUrl + 'pagemovies', {
       n: n
     });
   }
 
   addMovie(movie: Movie) {
-    return this.http.post('http://localhost:4000/movies', movie);
+    return this.http.post(this.herokuUrl + 'movies', movie);
   }
 
   updateMovie(oldTitle: String, movie: Movie) {
-    return this.http.put('http://localhost:4000/movies/' + oldTitle, movie);
+    return this.http.put(this.herokuUrl + 'movies' + oldTitle, movie);
   }
 
   deleteMovie(oldTitle: String) {
