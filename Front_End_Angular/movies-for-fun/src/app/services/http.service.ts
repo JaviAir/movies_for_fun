@@ -24,31 +24,31 @@ export class HttpService {
   }
 
   updateMovie(oldTitle: String, movie: Movie) {
-    return this.http.put(this.herokuUrl + 'movies' + oldTitle, movie);
+    return this.http.put(this.herokuUrl + 'movies/' + oldTitle, movie);
   }
 
   deleteMovie(oldTitle: String) {
-    return this.http.delete('http://localhost:4000/movies/' + oldTitle);
+    return this.http.delete(this.herokuUrl + 'movies/' + oldTitle);
   }
 
   // FILTERS
 
   getAlphabetizedOrder(char: String, skipNumber: Number) {
-    return this.http.post('http://localhost:4000/movies/filterchar', {
+    return this.http.post(this.herokuUrl + 'movies' + '/filterchar', {
       char: char,
       n: skipNumber
     });
   }
 
   filterGenre(genre: String, skipNumber: Number) {
-    return this.http.post('http://localhost:4000/movies/filtergenre', {
+    return this.http.post(this.herokuUrl + 'movies' + '/filtergenre', {
       genre: genre,
       n: skipNumber
     });
   }
 
   filterBoth(char: String, genre: String, skipNumber: Number) {
-    return this.http.post('http://localhost:4000/movies/filterboth', {
+    return this.http.post(this.herokuUrl + 'movies' + '/filterboth', {
       char: char,
       genre: genre,
       n: skipNumber
