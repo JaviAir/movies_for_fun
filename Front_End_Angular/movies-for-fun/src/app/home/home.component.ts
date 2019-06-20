@@ -7,7 +7,7 @@ import { MoviesService } from '../services/movies.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  title = 'movies-for-fun';
+  title = 'Movies4Fun';
 
   selectedGenreIndex = this.movieService.selectedGenreIndex;
   selectedCharIndex = this.movieService.selectedCharIndex;
