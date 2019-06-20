@@ -34,6 +34,7 @@ export class MovieListComponent implements OnInit, OnDestroy, AfterViewInit {
   ngAfterViewInit() {
     // once the list from the db has been projected onto the view (because its asyncronous)
     window.scrollTo(0, this.movieService.pageYOffset); // scroll to previous pageYOffset using stored in-memory pageYOffset
+    console.log(window.screenY);
   }
 
   ngOnDestroy() {
