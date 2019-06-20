@@ -14,6 +14,7 @@ import { MoviesService } from './services/movies.service';
 import { MovieDetailComponent } from './home/movie-detail/movie-detail.component';
 import { MovieEditComponent } from './home/movie-edit/movie-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MovieListComponent,
     MovieItemComponent,
     MovieDetailComponent,
-    MovieEditComponent
+    MovieEditComponent,
+    LoadingSpinnerComponent
   ],
   imports: [BrowserModule, FormsModule, ReactiveFormsModule, HttpClientModule, AppRoutingModule, NgbModule],
   providers: [MoviesService],
