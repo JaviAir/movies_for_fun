@@ -3,9 +3,12 @@
 </p>
 
 <div class="text-center" *ngIf="movieArray.length === 0">
-  Server is down
+    <app-loading-spinner></app-loading-spinner>
+  Server is booting up.
+  <p>If this takes about 10 seconds, you're the first visitor in a while!</p>
+  <p>If this takes any longer, something might have went wrong.</p>
   <p>Refresh the page or try again at a later time.</p>
-  <p>Sorry for the inconvenince!</p>
+  <p>Sorry for the inconvenince.</p>
 </div>
 
 <div class="container">
