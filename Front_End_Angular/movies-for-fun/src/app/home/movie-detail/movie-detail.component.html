@@ -1,5 +1,8 @@
 <br>
-<div class="container">
+
+<app-loading-spinner *ngIf="showSpinner && !movie"></app-loading-spinner>
+
+<div class="container" *ngIf="movie">
   <div class="row">
     <div class="col">
       <h3 *ngIf="title">{{movie.title}}</h3>
@@ -49,4 +52,11 @@
       <p *ngIf="movie">{{movie.rating}}</p>
     </div>
   </div>
+</div>
+
+<div *ngIf="!showSpinner && !movie">
+  Sorry, that movie is not in our database. Would you like to
+  <a [routerLink]="['/addMovie']">
+    add it?
+  </a>
 </div>
