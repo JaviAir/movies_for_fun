@@ -3,13 +3,20 @@ const router = express.Router();
 const Movie = require('../models/movie');
 
 // get a list of movies from db
-router.get('/movie', (req, res) => {
-    var n = req.body.n;
-     Movie.find().skip(2*(n-1)).limit(2).then(
-         (movies) => {
-                res.send(movies);
-         });
-    console.log('GET request');
+router.get('/movies/:title', (req, res) => {
+    // var n = req.body.n;
+    //  Movie.find().skip(2*(n-1)).limit(2).then(
+    //      (movies) => {
+    //             res.send(movies);
+    //      });
+    let paramTitle = req.params.title;
+    Movie.findOne({title:paramTitle}, (err, movie) => {
+        if (err) return res.status(500).send(err);
+            console.log(movie);
+            return res.send(movie);
+    });
+    // res.send('get request HEARD');
+    // console.log('GET request');
 });
 
 // the number skipped should be the number total/retrieved in the array
