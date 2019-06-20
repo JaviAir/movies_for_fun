@@ -7,13 +7,15 @@ import { Movie } from '../models/movie.model';
   providedIn: 'root'
 })
 export class MoviesService {
-  pageYOffset = 50;
+  pageYOffset;
 
   pageNumber;
 
   currentMovieIndex: number;
 
   movieParam;
+
+  movieSubject = new Subject<Movie>();
 
   // for home component filter and sort
   selectedGenreIndex = 0;
@@ -48,19 +50,72 @@ export class MoviesService {
     });
   }
 
-  getMovie(title: String): Movie {
-    for (const char in title) {
-      if (title[char] === '_') {
-        title = title.replace('_', ' ');
+  // getMovie(urlTitle: String): Movie {
+  //   for (const char in urlTitle) {
+  //     if (urlTitle[char] === '_') {
+  //       urlTitle = urlTitle.replace('_', ' ');
+  //     }
+  //   }
+  //   this.movies.forEach(movie => {
+  //     if (movie.title === urlTitle) {
+  //       this.movieParam = movie;
+  //     }
+  //   });
+  //   // if (this.movieParam === null) {
+  //   //   this.movieParam = undefined;
+  //   // } continue this idea later
+  //   return this.movieParam;
+  //   // implement index from movieItem to prevent duplication and to uphold authenticity
+  // }
+
+  getMovie(urlTitle: String) {
+    // console.log(this.movieSubject.next() + ' this is moviesubject');
+    // this.movieSubject.next(); // this equals undefined
+    let counter = 0;
+    for (const char in urlTitle) {
+      if (urlTitle[char] === '_') {
+        urlTitle = urlTitle.replace('_', ' ');
       }
     }
-    this.movies.forEach(element => {
-      if (element.title.toLowerCase() === title.toLowerCase()) {
-        this.movieParam = element;
+    console.log('arraysize: ' + this.movies.length);
+    this.movies.forEach(movie => {
+      if (movie.title === urlTitle) {
+        console.log('MATCH should only happen ONCE');
+        this.movieSubject.next(movie);
+      }
+      if (movie.title !== urlTitle) {
+        counter++;
+      }
+      if (counter === this.movies.length) {
+          this.movieSubject.next();
       }
     });
-    return this.movieParam;
+
+    if (this.movies.length === 0) { // if user refreshes page
+      this.movieSubject.next();
+    }
+    // if (this.movieParam === null) {
+    //   this.movieParam = undefined;
+    // } continue this idea later
+    // return this.movieParam;
+
     // implement index from movieItem to prevent duplication and to uphold authenticity
+  }
+
+  getMovieInstance(urlTitle: String) {
+    for (const char in urlTitle) {
+      if (urlTitle[char] === '_') {
+        urlTitle = urlTitle.replace('_', ' ');
+      }
+    }
+    this.httpService.getMovieInstance(urlTitle).subscribe( (movie: Movie) => {
+      console.log(movie);
+      this.movieSubject.next(movie);
+      // this.movieParam = movie;
+      // return this.movieParam;
+    });
+    // console.log(this.movieParam + 'testing if return success');
+    // return this.movieParam;
   }
 
   getMovieFromIndex() {
