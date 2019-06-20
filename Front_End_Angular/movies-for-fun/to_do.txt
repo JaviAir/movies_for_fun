@@ -53,16 +53,33 @@ Adding a movie - gets added to bottom of list, lets hope filters dont mess thing
 movie-details page isnt dynamic/ doesnt show changes. Fixed/done.
 
 authenticity or Dealing with duplicates
-everytime user treturns to home page, the filter and sort values return to default.
+everytime user treturns to home page, the filter and sort values return to default. Fixed/Done.
 Add modal before navigating back to /movies page after addMovie. (To give time for database to refresh.)
 
 front page
-Add alphabetical current letter like genre has.
-clean up design, delete extra p tags. turn the bottom ones into white, bigger, with black background. (Maybe add functionality to them)
-
-make title in movieDetail page css: capitalCase.
-
-delete movie eidt oworks p tag
 find/use/implement api for foul language detection.
 
-switching alphabetical to G then back to A delets from memory. Most likely skippping since its too low array of data/collections
+switching alphabetical to G then back to A delets from memory. Most likely skippping since its too low array of data/collections Fixed/Done.
+
+
+Styles
+Front page
+  Movies4Fun title
+  home works p tag
+  movie list '
+  movie item '
+  movie item test123 '
+  padding-top 1rem movie item title
+  adjust buttons postition on navbar
+details page
+  add capitale case style to title
+
+Functionality
+Front page
+  Add loading gif/bar/img on servers first load Done.
+  Footer buttons/links for home and add a movie
+  run filter/sort functions if either are != All respectively
+
+moviedetail and movieedit
+  get movie/data after refresh Done.
+
