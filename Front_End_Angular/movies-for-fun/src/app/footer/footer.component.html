@@ -1,10 +1,12 @@
 <br>
 <div class="bg-dark">
-  <p class="text-center bright" style="padding-top: 1rem">Home</p>
+  <!-- <p class="top text-center brightText" style="padding-top: 1rem">Top</p> -->
+<div class="top text-center brightText" style="padding-top: 1rem" (click)="toTheTop()">Top</div>
+  <!-- <button class="topBtn bg-dark brightText" (click)="toTheTop()">Top</button> -->
+<!-- <p class="text-center bright">Add A Movie</p> -->
+<button class="addMovieBtn btn btn-dark brightText" [routerLink]="['addMovie']">Add A Movie</button>
 
-<p class="text-center bright">Add A Movie</p>
-
-<p class="text-center bright" style="padding-bottom: 1rem; margin-bottom: 0">@Movies4Fun</p>
+<p class="text-center brightText" style="padding-bottom: 1rem; margin-bottom: 0">@Movies4Fun</p>
 </div>
 
 
