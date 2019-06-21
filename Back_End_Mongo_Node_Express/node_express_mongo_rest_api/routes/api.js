@@ -22,7 +22,7 @@ router.get('/movies/:title', (req, res) => {
 // the number skipped should be the number total/retrieved in the array
 router.post('/pagemovies', (req, res) => {
     var n = req.body.n;
-    Movie.find().skip(n).limit(2).then((movies) => {
+    Movie.find().skip(n).limit(3).then((movies) => {
                     // res.send(movies.map(movies => movies.title));
                     res.send(movies);
                     console.log(movies);
@@ -96,7 +96,7 @@ router.post('/movies/filterchar', (req, res) => {
     console.log(req.body);
     let char = req.body.char;
     let n = req.body.n;
-    Movie.find({title: new RegExp('^' + char , 'i')}).sort({title:1}).skip(n).limit(1).then((movies) => {
+    Movie.find({title: new RegExp('^' + char , 'i')}).sort({title:1}).skip(n).limit(3).then((movies) => {
             res.send(movies);
         });
 });
@@ -106,7 +106,7 @@ router.post('/movies/filtergenre', (req, res) => {
     console.log(req.body);
     let genre = req.body.genre;
     let n = req.body.n;
-    Movie.find({genre: new RegExp('^' + genre , 'i')}).sort({title:1}).skip(n).limit(1).then((movies) => {
+    Movie.find({genre: new RegExp('^' + genre , 'i')}).sort({title:1}).skip(n).limit(3).then((movies) => {
             res.send(movies);
         });
 });
@@ -117,7 +117,7 @@ router.post('/movies/filterboth', (req, res) => {
     let char = req.body.char;
     let genre = req.body.genre;
     let n = req.body.n;
-    Movie.find({title:new RegExp('^' + char , 'i'), genre:genre}).sort({title:1}).skip(n).limit(1).then((movies) => {
+    Movie.find({title:new RegExp('^' + char , 'i'), genre:genre}).sort({title:1}).skip(n).limit(3).then((movies) => {
             res.send(movies);
         });
 });
