@@ -15,6 +15,7 @@ import { MovieDetailComponent } from './home/movie-detail/movie-detail.component
 import { MovieEditComponent } from './home/movie-edit/movie-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.co
     MovieEditComponent,
     LoadingSpinnerComponent
   ],
-  imports: [BrowserModule, FormsModule, ReactiveFormsModule, HttpClientModule, AppRoutingModule, NgbModule],
+  imports: [BrowserModule, FormsModule, ReactiveFormsModule, HttpClientModule, AppRoutingModule, NgbModule, InfiniteScrollModule],
   providers: [MoviesService],
   bootstrap: [AppComponent]
 })
