@@ -70,7 +70,12 @@ export class MovieEditComponent implements OnInit, OnDestroy {
   }
 
   onCancel() {
-      this._location.back();
+    // console.log(this.movieForm.getRawValue);
+    // this.route.params['title'] = 'test';
+    // console.log(this.route.params);
+    // this.router.navigate(['/movies/' + this.title]);
+    this.router.navigate(['/movies']);
+      // this._location.back();
   }
 
   ngOnDestroy() {
