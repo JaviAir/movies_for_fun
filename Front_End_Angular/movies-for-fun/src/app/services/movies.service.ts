@@ -15,6 +15,8 @@ export class MoviesService {
 
   movieParam;
 
+  spinnerSubject = new Subject<boolean>();
+
   movieSubject = new Subject<Movie>();
 
   // for home component filter and sort
@@ -37,6 +39,9 @@ export class MoviesService {
 
   private movies: Movie[] = [];
 
+  counter = 0;
+  interval;
+
   populateMovies(loadMore: Boolean) {
     if (!loadMore) {
       console.log('its FALSE, SPLICING NOW');
@@ -45,8 +50,25 @@ export class MoviesService {
     this.httpService.getMovies(this.movies.length).subscribe(data => {
       this.movies.push(...data);
       this.movieArrayUpdated.next(this.movies.slice());
-      console.log(this.movies);
-      console.log('Array Length: ' + this.movies.length);
+      this.spinnerSubject.next(false);
+
+      // this.interval = setInterval(() => {
+      //   this.counter++;
+      //   if (this.counter === 3) {
+      //     this.movies.push(...data);
+      //     this.movieArrayUpdated.next(this.movies.slice());
+      //     this.spinnerSubject.next(false);
+      //     // if (data.length === 0) {
+      //     //   console.log('nothing to load, end of array/db.');
+      //     //   this.endOfDbSubject.next(true);
+      //     // }
+      //     console.log(this.movies);
+      //     console.log('Array Length: ' + this.movies.length);
+      //     this.counter = 0;
+      //     clearInterval(this.interval);
+      //   }
+      // }, 1000);
+
     });
   }
 
@@ -87,11 +109,12 @@ export class MoviesService {
         counter++;
       }
       if (counter === this.movies.length) {
-          this.movieSubject.next();
+        this.movieSubject.next();
       }
     });
 
-    if (this.movies.length === 0) { // if user refreshes page
+    if (this.movies.length === 0) {
+      // if user refreshes page
       this.movieSubject.next();
     }
     // if (this.movieParam === null) {
@@ -108,7 +131,7 @@ export class MoviesService {
         urlTitle = urlTitle.replace('_', ' ');
       }
     }
-    this.httpService.getMovieInstance(urlTitle).subscribe( (movie: Movie) => {
+    this.httpService.getMovieInstance(urlTitle).subscribe((movie: Movie) => {
       console.log(movie);
       this.movieSubject.next(movie);
       // this.movieParam = movie;
@@ -124,6 +147,32 @@ export class MoviesService {
 
   readmovieArray() {
     this.movieArrayUpdated.next(this.movies.slice());
+  }
+
+  oddOneOut(currentGenre: String, currentLetter: String) { // splices movie from array if genre or 1st letter dont align with search options
+    if (currentGenre !== 'All' && currentLetter === 'All') { // if just genre is activated
+          this.movies.forEach(movie => {
+            if (movie.genre !== currentGenre) { // check for changes
+              this.movies.splice(this.currentMovieIndex, 1); // remove updated movie
+              this.readmovieArray();
+            }
+          });
+    } else if (currentGenre === 'All' && currentLetter !== 'All') { // if just Alphabetical is activated
+      this.movies.forEach(movie => {
+        if (movie.title[0].toLowerCase() !== currentLetter.toLowerCase()) { // check
+          console.log('letter cut from array');
+          this.movies.splice(this.currentMovieIndex, 1); // remove
+          this.readmovieArray();
+        }
+      });
+    } else { // both are actiavted
+      this.movies.forEach(movie => {
+        if (movie.title[0].toLowerCase() !== currentLetter.toLowerCase() || movie.genre !== currentGenre) {
+          this.movies.splice(this.currentMovieIndex, 1);
+          this.readmovieArray();
+        }
+      });
+    }
   }
 
   addMovietoDatabase(movie: Movie) {
@@ -164,9 +213,21 @@ export class MoviesService {
     this.httpService
       .getAlphabetizedOrder(selectedChar, this.movies.length)
       .subscribe((data: Movie[]) => {
-        console.log(data);
         this.movies.push(...data);
         this.readmovieArray();
+        this.spinnerSubject.next(false);
+
+        // this.interval = setInterval(() => {
+        //   this.counter++;
+        //   if (this.counter === 3) {
+        //     this.movies.push(...data);
+        //     this.readmovieArray();
+        //     this.spinnerSubject.next(false);
+        //     this.counter = 0;
+        //     clearInterval(this.interval);
+        //   }
+        // }, 1000);
+        // console.log(data);
       });
   }
 
@@ -176,12 +237,25 @@ export class MoviesService {
       console.log('its FALSE, SPLICING NOW');
       this.movies.splice(0, this.movies.length);
     }
-    this.httpService.filterGenre(genre, this.movies.length).subscribe(
-      (data: Movie[]) => {
+    this.httpService
+      .filterGenre(genre, this.movies.length)
+      .subscribe((data: Movie[]) => {
         this.movies.push(...data);
         this.readmovieArray();
-      }
-    );
+        this.spinnerSubject.next(false);
+
+        // this.interval = setInterval(() => {
+        //   this.counter++;
+        //   if (this.counter === 3) {
+        //     this.movies.push(...data);
+        //     this.readmovieArray();
+        //     this.spinnerSubject.next(false);
+        //     this.counter = 0;
+        //     clearInterval(this.interval);
+        //   }
+        // }, 1000);
+
+      });
   }
 
   filterGenreAndAlphabetical(
@@ -194,12 +268,25 @@ export class MoviesService {
       console.log('its FALSE, SPLICING NOW');
       this.movies.splice(0, this.movies.length);
     }
-    this.httpService.filterBoth(selectedCharName, selectedGenreName, this.movies.length).subscribe(
-      (data: Movie[]) => {
+    this.httpService
+      .filterBoth(selectedCharName, selectedGenreName, this.movies.length)
+      .subscribe((data: Movie[]) => {
         this.movies.push(...data);
         this.readmovieArray();
-      }
-    );
+        this.spinnerSubject.next(false);
+
+        // this.interval = setInterval(() => {
+        //   this.counter++;
+        //   if (this.counter === 3) {
+        //     this.movies.push(...data);
+        //     this.readmovieArray();
+        //     this.spinnerSubject.next(false);
+        //     this.counter = 0;
+        //     clearInterval(this.interval);
+        //   }
+        // }, 1000);
+
+      });
     // call htpp.post request for both
   }
 }
