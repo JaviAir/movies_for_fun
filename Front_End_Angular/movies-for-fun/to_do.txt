@@ -1,7 +1,7 @@
 
 Infinite Scroll
   Lazy Loading. Done.
-    Make it work with scrolling. ~Almost there
+    Make it work with scrolling. ~Done.
 
 Navigation/save state
   Make back button take you to the position of the page you were in last time. Done.
@@ -64,22 +64,46 @@ switching alphabetical to G then back to A delets from memory. Most likely skipp
 
 Styles
 Front page
-  Movies4Fun title
-  home works p tag
-  movie list '
-  movie item '
-  movie item test123 '
-  padding-top 1rem movie item title
+  Movies4Fun title Done.
+  home works p tag Done.
+  movie list ' Done.
+  movie item ' Done.
+  movie item test123 ' Done.
+  padding-top 1rem movie item title Done.
   adjust buttons postition on navbar
+
 details page
-  add capitale case style to title
+  add capitale case style to title Done.
+  adjust title edit delete columns
+    make title take up the whole column if need be
+      the buttons will shift underneath for longer titles
+        but will be on the right side of the title.
 
 Functionality
 Front page
   Add loading gif/bar/img on servers first load Done.
-  Footer buttons/links for home and add a movie
-  run filter/sort functions if either are != All respectively
+  Footer buttons/links for home and add a movie Done.
+    replace home for top
+  run filter/sort functions if either are != All respectively Done.
+    call moviesvc method passing genre/letter name as arg
+      in that method
+        foreach movie in movies[]
+          if movie.genre !== genreArg || movie.title[0] !== letterArg
+            slice at that index or remove from array
+            then readfromarrray();
 
 moviedetail and movieedit
   get movie/data after refresh Done.
 
+make end of db and loadingSpinner show/work better. more fluid.
+Not gonna make it show "EndOFDB" if user finds by genre and letter.
+not gonna mamke it show for every letter either.
+Probably best to leave it at spinner only.
+user should know if spinner isnt there and can't scroll more then theyve reached end of page and should refresh or whatever.
+
+had to put a timer delay to test it
+it works on pagemovies
+gotta try it on switching filter and sort
+  then paging forward and back
+  even refresh althought i think thats redundant
+if its all good rename every "endofdb" to showSpinner or spinnersubject Done.
