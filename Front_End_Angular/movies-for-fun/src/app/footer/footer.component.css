@@ -1,3 +1,37 @@
-.bright {
+.brightText {
   color: whitesmoke;
+}
+
+.addMovieBtn {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 0.5rem;
+  padding-bottom: 1rem;
+  border-radius: 0;
+}
+
+.topBtn {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 1rem;
+  padding-bottom: 0rem;
+  border: 0;
+}
+
+.top {
+  /* color: white; */
+  font-weight: 400;
+  width: 115px;
+  padding-bottom: 0.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  transition: background-color 0.3s;
+}
+
+.top:hover {
+  cursor: pointer;
+  background-color: #24282c;
+  transition: 0.3s;
 }
