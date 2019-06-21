@@ -1,13 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
 import { MoviesService } from '../services/movies.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   title = 'Movies4Fun';
+
+  showSpinner = false;
+
+  private spinnerSub: Subscription;
 
   selectedGenreIndex = this.movieService.selectedGenreIndex;
   selectedCharIndex = this.movieService.selectedCharIndex;
@@ -51,11 +56,29 @@ export class HomeComponent implements OnInit {
   constructor(private movieService: MoviesService) {}
 
   ngOnInit() {
-    // this.retrieveStoredValues();
+    // subscribe to spinnerSubject<boolean>
+    this.spinnerSub = this.movieService.spinnerSubject.subscribe(
+      (bool: boolean) => {
+        this.showSpinner = bool;
+      }
+    );
+
+    if (this.selectedGenreName !== 'All' || this.selectedCharName !== 'All') {
+      this.movieService.oddOneOut(this.selectedGenreName, this.selectedCharName);
+    }
   }
+
   // @HostListener('window:scroll', ['$event']) // for window scroll events
-  // onScroll(event) {
+  // onScroll(event: { target: { scrollTop: number; }; }) {
   //   console.log('Scrolling: ' + window.pageYOffset);
+  //   // this.myYaxis++;
+  //   // console.log('My y axis: ' + this.myYaxis);
+  //   if (scrollY > document.body.scrollHeight - document.body.offsetHeight - 1) {
+  //     console.log('bottom');
+
+  //   }console.log(document.body.scrollTop);
+  //   console.log();
+  //   console.log(document.body.scrollHeight);
   // }
 
   onLetterSelected(charIndex: number) {
@@ -107,7 +130,6 @@ export class HomeComponent implements OnInit {
   }
 
   nextArray() {
-    console.log('loadnextarrayformhome!');
     this.retrieveStoredValues();
     if (this.selectedGenreIndex === 0 && this.selectedCharIndex === 0) {
       // if no filters active
@@ -115,6 +137,7 @@ export class HomeComponent implements OnInit {
     } else if (this.selectedGenreIndex !== 0 && this.selectedCharIndex === 0) {
       // if only genre filter is active
       this.movieService.filterGenre(this.selectedGenreName, true);
+
     } else if (this.selectedGenreIndex === 0 && this.selectedCharIndex !== 0) {
       // if only alphabetical filter is active
       this.movieService.filterAlphabetically(this.selectedCharName, true);
@@ -134,6 +157,16 @@ export class HomeComponent implements OnInit {
 
     this.selectedGenreName = this.movieService.selectedGenreName;
     this.selectedCharName = this.movieService.selectedCharName;
+  }
+
+  onScroll() { // user has reached end of page
+    this.showSpinner = true; // show loading spinner
+    this.nextArray(); // retrieve data from server
+
+  }
+
+  ngOnDestroy() {
+    this.spinnerSub.unsubscribe();
   }
 
 }
