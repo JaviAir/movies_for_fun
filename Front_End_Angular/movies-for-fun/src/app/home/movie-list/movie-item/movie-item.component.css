@@ -2,11 +2,14 @@
 .hoverTest {
   background-color: rgb(255, 255, 255);
   padding: 0px;
+  /* text-decoration-line: none; */
 }
 
 .hoverTest > .container {
   color: #0069d9;
   padding: 20px;
+  transition: background-color 0.3s;
+
 }
 
 .hoverTest:hover > .container {
@@ -22,10 +25,12 @@
 .hoverTest:hover .m-title,
 .hoverTest:hover .read-more {
   text-decoration-line: underline;
+  /* transition: text-decoration-line 1s; */
 }
 
 .m-title {
   text-transform: capitalize;
+  padding-top: 20px;
 }
 
 .center {
