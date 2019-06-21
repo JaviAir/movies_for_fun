@@ -4,8 +4,8 @@
 
 <div class="container" *ngIf="movie">
   <div class="row">
-    <div class="col">
-      <h3 *ngIf="title">{{movie.title}}</h3>
+    <div class="col-sm-12">
+      <h3 style="text-transform: capitalize;" *ngIf="title">{{movie.title}}</h3>
     </div>
     <div class="col text-right">
       <button class="btn btn-outline-primary" type="button" (click)="onEdit()" routerLink="edit" [queryParams]="{edit: true}" >Edit</button>
