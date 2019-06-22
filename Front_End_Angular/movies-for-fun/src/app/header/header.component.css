@@ -1,6 +1,7 @@
-div.dropdown-menu.show {
+.dropdown-menu.show {
   padding: 0;
   border: 3px solid;
   border-color: rgb(23, 116, 204);
-
 }
+
+
