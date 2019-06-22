@@ -179,6 +179,9 @@ export class MoviesService {
     this.httpService.addMovie(movie).subscribe((data: Movie) => {
       // this.movies.push(data);
       // this.readmovieArray();
+      // could add movie to array
+      // if array.length < 2 or 3
+      // so if page is not scrollable, add it to array and update list
     });
   }
 
