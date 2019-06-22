@@ -10,11 +10,11 @@ export class LoadingSpinnerComponent implements OnInit, OnDestroy {
   constructor() { }
 
   ngOnInit() {
-    console.log('spinner created');
+    // console.log('spinner created');
   }
 
   ngOnDestroy() {
-    console.log('spinner destroyed');
+    // console.log('spinner destroyed');
   }
 
 }
