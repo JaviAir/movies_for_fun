@@ -65,15 +65,11 @@ export class MovieEditComponent implements OnInit, OnDestroy {
       this.modalService.open(content, {centered: true, size: 'lg'});
     } else {
       this.movieService.addMovietoDatabase(this.movieForm.value);
-      this.router.navigate(['/movies']);
+      this.modalService.open(content, {centered: true, size: 'lg'});
     }
   }
 
   onCancel() {
-    // console.log(this.movieForm.getRawValue);
-    // this.route.params['title'] = 'test';
-    // console.log(this.route.params);
-    // this.router.navigate(['/movies/' + this.title]);
     this.router.navigate(['/movies']);
       // this._location.back();
   }
