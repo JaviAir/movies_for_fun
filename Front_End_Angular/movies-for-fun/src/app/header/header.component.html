@@ -1,37 +1,29 @@
-<!-- <button
-  class="btn btn-primary"
-  placement="bottom"
-  ngbTooltip="NgBootstrap works!"
->
-  Bootstrap css works!
-</button> -->
 
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
   <a
-    class="navbar-brand text-center"
+    class="navbar-brand collapse navbar-collapse text-center"
+    style="margin-left: 20%"
     [routerLink]="['/']"
-    routerLinkActive="active"
-    [routerLinkActiveOptions]="{ exact: true }"
+    [routerLinkActive]="'active'"
+    [routerLinkActiveOptions]="'{ exact: true }'"
     >Movies4Fun</a
   >
 
-  <!-- Toggler/collapsibe Button -->
-  <!-- <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#collapsibleNavbar"
+  <a
+    class="navbar-toggler navbar-brand text-center mr-auto"
+    style="color: white; border: 0px;"
+    [routerLink]="['/']"
+    [routerLinkActive]="'active'"
+    [routerLinkActiveOptions]="'{ exact: true }'"
+    >Movies4Fun</a
   >
-  +
-    <span class="navbar-toggler-icon"></span>
-  </button> -->
 
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
-    <ul class="navbar-nav">
+    <ul class="navbar-nav" style="margin-left: 30%">
       <li class="nav-item">
         <a
           class="nav-link"
-          [routerLink]="['/']"
+          [routerLink]="['/movies']"
           [routerLinkActive]="'active'"
           [routerLinkActiveOptions]="{ exact: true }"
           >Home</a
@@ -45,13 +37,10 @@
           >Add Movie</a
         >
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link 3</a>
-      </li>
     </ul>
   </div>
 
-  <div ngbDropdown class="d-inline-block">
+  <div ngbDropdown class="d-inline-block ml-auto text-right" display="dynamic">
     <button
       class="btn btn-outline-primary"
       id="dropdownBasic1"
@@ -59,7 +48,7 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="">
       <!-- <button ngbDropdownItem *ngFor="let item of genre; let i = index" type="button" [disabled]="selectedGenreIndex === i" (click)="onGenreSelected(i)">{{item}}</button> -->
       <div
 
@@ -84,9 +73,6 @@
               [routerLinkActive]="'active'"
               >Add Movie</a
             >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link 3</a>
           </li>
         </ul>
       </div>
