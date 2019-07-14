@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener, AfterViewChecked } from '@angular/core';
 import { LocationStrategy, Location } from '@angular/common';
 import { Movie } from 'src/app/models/movie.model';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -13,10 +13,9 @@ import { Subscription } from 'rxjs';
 export class MovieDetailComponent implements OnInit, OnDestroy {
   movie: Movie;
   title: String;
-  editMode: Boolean;
+  editMode: Boolean = true;
   showSpinner: boolean;
 
-  private movieSubjectSubscription: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -37,37 +36,17 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
   // }
 
   ngOnInit() {
-    window.scrollTo(0, 0); // needed because for some reason this component scrolls to the same pageYOffset as the previous
-    this.showSpinner = true;
-    // this.movie = this.movieService.getMovieFromIndex();
-    // this will just call getMovie and return the current movie index, no title need to be passed
-
-    this.route.params.subscribe((params: Params) => {
-      this.title = params['title'];
-    });
-
-    // subscribe to movieSubject
-    this.movieSubjectSubscription = this.movieService.movieSubject.subscribe(
-      (movie: Movie) => {
-        console.log('SUBJECT SUBSCRIBER CALLED');
-          this.movie = movie;
-        if (movie === undefined) {
-          this.movieService.getMovieInstance(this.title);
-        } else {
-          this.showSpinner = false;
-        }
-      }
-    );
-    this.movieService.getMovie(this.title);
+    scrollTo(0, 0); // needed because for some reason this component scrolls to the same pageYOffset as the previous
+    this.movie = this.route.snapshot.data.movieInfo;
   }
 
   ngOnDestroy() {
-    this.movieSubjectSubscription.unsubscribe();
+    // this.movieSubjectSubscription.unsubscribe();
   }
 
   onEdit() {
-    this.editMode = true;
-    console.log(this.editMode);
+    // this.editMode = true;
+    // console.log(this.editMode);
   }
 
   onDelete() {
