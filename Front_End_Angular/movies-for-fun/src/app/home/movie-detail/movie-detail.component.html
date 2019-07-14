@@ -1,14 +1,13 @@
 <br>
 
-<app-loading-spinner *ngIf="showSpinner && !movie"></app-loading-spinner>
 
 <div class="container" *ngIf="movie">
   <div class="row">
     <div class="col-sm-12">
-      <h3 style="text-transform: capitalize;" *ngIf="title">{{movie.title}}</h3>
+      <h3 style="text-transform: capitalize;" *ngIf="movie">{{movie.title}}</h3>
     </div>
     <div class="col text-right">
-      <button class="btn btn-outline-primary" type="button" (click)="onEdit()" routerLink="edit" [queryParams]="{edit: true}" >Edit</button>
+      <button class="btn btn-outline-primary" type="button" (click)="onEdit()" routerLink="edit" [queryParams]="{edit: [this.editMode] }" >Edit</button>
     </div>
     <div class="col text-left">
       <button class="btn btn-outline-danger" type="button" (click)="onDelete()">Delete</button>
@@ -54,7 +53,7 @@
   </div>
 </div>
 
-<div *ngIf="!showSpinner && !movie">
+<div *ngIf="!movie">
   Sorry, that movie is not in our database. Would you like to
   <a [routerLink]="['/addMovie']">
     add it?
