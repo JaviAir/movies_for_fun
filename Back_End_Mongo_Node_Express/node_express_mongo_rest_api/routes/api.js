@@ -2,7 +2,14 @@ const express = require('express');
 const router = express.Router();
 const Movie = require('../models/movie');
 
-// get a list of movies from db
+
+router.get('/movies', (req, res) => {
+    res.send('hi');
+    console.log('GET request');
+});
+
+
+// get a specific movie from db
 router.get('/movies/:title', (req, res) => {
     // var n = req.body.n;
     //  Movie.find().skip(2*(n-1)).limit(2).then(
@@ -10,9 +17,10 @@ router.get('/movies/:title', (req, res) => {
     //             res.send(movies);
     //      });
     let paramTitle = req.params.title;
+    console.log('TITLE IS' + paramTitle);
     Movie.findOne({title:paramTitle}, (err, movie) => {
         if (err) return res.status(500).send(err);
-            console.log(movie);
+            console.log('MOVIE IS ' + movie);
             return res.send(movie);
     });
     // res.send('get request HEARD');
@@ -22,7 +30,7 @@ router.get('/movies/:title', (req, res) => {
 // the number skipped should be the number total/retrieved in the array
 router.post('/pagemovies', (req, res) => {
     var n = req.body.n;
-    Movie.find().skip(n).limit(3).then((movies) => {
+    Movie.find().sort({_id:-1}).skip(n).limit(3).then((movies) => {
                     // res.send(movies.map(movies => movies.title));
                     res.send(movies);
                     console.log(movies);
@@ -72,17 +80,11 @@ router.put('/movies/:title', (req, res) => {
 
 
 // delete a movie from the db
-router.delete('/movies/:title', (req, res) => {
+router.delete('/movies/:id', (req, res) => {
     console.log('DELETE request');
-    console.log(req.params.title);
-    let paramTitle = req.params.title;
-    for (const char in paramTitle) {
-        if (paramTitle[char] === '_') {
-          paramTitle = paramTitle.replace('_', ' ');
-        }
-      }
-    Movie.findOneAndRemove(
-        {title:paramTitle}, 
+    let paramId = req.params.id;
+    Movie.findOneAndDelete(
+        {_id:paramId}, 
         (err, movie) => {
         // Handle any possible database errors
             if (err) return res.status(500).send(err);
